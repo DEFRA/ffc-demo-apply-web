@@ -9,4 +9,4 @@ docker-compose up -d
 
 # run acceptance
 cd test/acceptance
-docker-compose run --rm wdio-cucumber
+docker-compose run --rm ffc-demo-apply-web-acceptance

@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  wdio-cucumber:
+  ffc-demo-apply-web-acceptance:
     environment:
       MAX_INSTANCES: 1
       CHROME_ARGS: "--verbose"

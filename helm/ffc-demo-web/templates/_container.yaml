@@ -1,4 +1,4 @@
-{{- define "ffc-demo-web.container" -}}
+{{- define "ffc-demo-apply-web.container" -}}
 ports:
 - containerPort: {{ .Values.container.port }}
   name: http

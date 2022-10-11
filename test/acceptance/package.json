@@ -1,7 +1,7 @@
 {
   "author": "Seymour Pattisson <seymour.pattisson@defra.gov.uk>",
   "license": "OGL-UK-3.0",
-  "name": "ffc-demo-web-acceptance-tests",
+  "name": "ffc-demo-apply-web-acceptance-tests",
   "version": "1.1.0",
   "description": "Acceptance tests for FFC demo service",
   "homepage": "https://github.com/DEFRA/ffc-demo-acceptance-tests",

@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  wdio-cucumber:
+  ffc-demo-apply-web-acceptance:
     build: .
-    image: wdio-cucumber
+    image: ffc-demo-apply-web-acceptance
     container_name: webdriver-cuke
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}

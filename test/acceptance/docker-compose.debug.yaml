@@ -1,4 +1,4 @@
 version: '3.8'
 services:
-  wdio-cucumber:
+  ffc-demo-apply-web-acceptance:
     command: npm run test:debug

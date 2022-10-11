@@ -2,7 +2,7 @@
 
 > Future Farming and Countryside Programme - Demo Web Acceptance Tests
 
-This folder contains the acceptance tests for the FFC Demo Web service components as can be operated through the 'customer facing' `ffc-demo-web` front end microservice.
+This folder contains the acceptance tests for the FFC Demo Web service components as can be operated through the 'customer facing' `ffc-demo-apply-web` front end microservice.
 
 The framework is (Cucumber)[https://cucumber.io/] and (webdriver.io)[https://webdriver.io/] based, containerised, expandable and based on the actively maintained webdriver.io Cucumber boilerplate project.
 
@@ -28,7 +28,7 @@ Docker is used to create a container for each of selenium-hub, chrome-browser an
 
 2. If running against localhost, then no need to set `TEST_ENVIRONMENT_ROOT_URL` as it will default to `docker.host.internal:3000`.  Instead make sure the application container is running with `docker-compose up --build` in the root folder of this repository
 
-3. From the directory containing the dockerfile run `docker-compose run --rm wdio-cucumber`. This will run an acceptance test against the FFC-Demo web service.
+3. From the directory containing the dockerfile run `docker-compose run --rm ffc-demo-apply-web-acceptance`. This will run an acceptance test against the FFC-Demo web service.
 
 4. The test reports will be output to `./html-reports`. Note that WSL users need to run `mkdir -m 777 html-reports`. Read more about report configuration in the [rpii/wdio-hmtl-reporter docs](https://github.com/rpii/wdio-html-reporter)
 

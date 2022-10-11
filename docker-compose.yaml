@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  ffc-demo-web:
+  ffc-demo-apply-web:
     build:
       context: .
       target: production
-    image: ffc-demo-web
-    container_name: ffc-demo-web
+    image: ffc-demo-apply-web
+    container_name: ffc-demo-apply-web
     environment:
-      APPINSIGHTS_CLOUDROLE: ffc-demo-web-local
+      APPINSIGHTS_CLOUDROLE: ffc-demo-apply-web-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
       CLAIM_QUEUE_ADDRESS: ${CLAIM_QUEUE_ADDRESS:-ffc-demo-claim}${MESSAGE_QUEUE_SUFFIX}
       COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie      

@@ -1,4 +1,4 @@
-[![Known Vulnerabilities](https://snyk.io/test/github/DEFRA/ffc-demo-web/badge.svg?targetFile=package.json)](https://snyk.io/test/github/DEFRA/ffc-demo-web?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/DEFRA/ffc-demo-apply-web/badge.svg?targetFile=package.json)](https://snyk.io/test/github/DEFRA/ffc-demo-apply-web?targetFile=package.json)
 
 # FFC Demo Service
 
@@ -46,7 +46,7 @@ overridden by build and release pipelines.
 
 | Name                           | Description                               | Required  | Default            | Valid                       | Notes                                                                             |
 | ----                           | -----------                               | :-------: | -------            | -----                       | -----                                                                             |
-| APPINSIGHTS_CLOUDROLE          | Role used for filtering metrics           | no        |                    |                             | Set to `ffc-demo-web-local` in docker compose files                               |
+| APPINSIGHTS_CLOUDROLE          | Role used for filtering metrics           | no        |                    |                             | Set to `ffc-demo-apply-web-local` in docker compose files                               |
 | APPINSIGHTS_INSTRUMENTATIONKEY | Key for application insight               | no        |                    |                             | App insights only enabled if key is present. Note: Silently fails for invalid key |
 | CACHE_NAME                     | Cache name                                | no        | redisCache         |                             |                                                                                   |
 | CLAIM_QUEUE_ADDRESS            | claim queue name                          | no        |                    | claim                       |                                                                                   |
@@ -185,7 +185,7 @@ Alternatively, a local port may be forwarded to the pod:
 
 ```
 # Forward local port to the Kubernetes deployment
-kubectl port-forward --namespace=ffc-demo deployment/ffc-demo-web 3000:3000
+kubectl port-forward --namespace=ffc-demo deployment/ffc-demo-apply-web 3000:3000
 ```
 
 Once the port is forwarded or an ingress controller is installed, the service

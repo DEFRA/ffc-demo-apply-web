@@ -1,6 +1,6 @@
 # Microservice Performance Tests
 
-This folder contains the peformance tests for the FFC Demo Web service `ffc-demo-web` front end.
+This folder contains the peformance tests for the FFC Demo Web service `ffc-demo-apply-web` front end.
 
 The framework is based upon (jmeter)[https://jmeter.apache.org/], and utilises an jmeter image from [https://github.com/justb4/docker-jmeter].
 

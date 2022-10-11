@@ -1,7 +1,7 @@
 environment: development
-name: ffc-demo-web
+name: ffc-demo-apply-web
 namespace: ffc-demo
-image: ffc-demo-web
+image: ffc-demo-apply-web
 workstream: ffc-demo
 
 labels:
@@ -15,10 +15,10 @@ azureIdentity:
   resourceID: not-a-real-resourceID
 
 containerConfigMap:
-  name: ffc-demo-web-config-map
+  name: ffc-demo-apply-web-config-map
 
 containerSecret:
-  name: ffc-demo-web-container-secret
+  name: ffc-demo-apply-web-container-secret
   type: Opaque
 
 service:

@@ -4,7 +4,7 @@ version: '3.8'
 # to provide dependencies and expose ports for local testing
 
 services:
-  ffc-demo-web:
+  ffc-demo-apply-web:
     build:
       target: development
     command: npm run start:watch

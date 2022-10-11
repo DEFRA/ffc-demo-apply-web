@@ -17,7 +17,7 @@ describe('Pact Verification', () => {
       messageProviders: {
         'a request for new claim': () => createMessage(claim).body
       },
-      provider: 'ffc-demo-web',
+      provider: 'ffc-demo-apply-web',
       consumerVersionTags: ['main', 'dev', 'test', 'preprod', 'prod'],
       pactBrokerUrl: process.env.PACT_BROKER_URL,
       pactBrokerUsername: process.env.PACT_BROKER_USERNAME,

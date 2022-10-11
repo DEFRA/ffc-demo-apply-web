@@ -5,10 +5,10 @@ version: '3.8'
 # ports to the host machine.
 
 services:
-  ffc-demo-web:
+  ffc-demo-apply-web:
     build:
       target: development
-    image: ffc-demo-web-development
+    image: ffc-demo-apply-web-development
     command: npm run test
     environment:
       NODE_ENV: test
