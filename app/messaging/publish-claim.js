@@ -1,4 +1,4 @@
-const mqConfig = require('../config').claimQueueConfig
+const mqConfig = require('../config').applyQueueConfig
 const { MessageSender } = require('ffc-messaging')
 const createMessage = require('./create-message')
 const sessionHandler = require('../services/session-handler')

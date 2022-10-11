@@ -14,7 +14,7 @@ data:
   REST_CLIENT_TIMEOUT_IN_MILLIS: {{ quote .Values.container.restClientTimeoutMillis }}
   STATIC_CACHE_TIMEOUT_IN_MILLIS: {{ quote .Values.container.staticCacheTimeoutMillis }}
   MESSAGE_QUEUE_HOST: {{ quote .Values.container.messageQueueHost }}
-  CLAIM_QUEUE_ADDRESS: {{ quote .Values.container.claimQueueAddress }}
+  APPLY_QUEUE_ADDRESS: {{ quote .Values.container.applyQueueAddress }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   GOOGLE_TAG_MANAGER_KEY: {{ quote .Values.container.googleTagManagerKey}}
 {{- end -}}

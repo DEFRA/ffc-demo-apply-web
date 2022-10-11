@@ -40,7 +40,7 @@ container:
   port: 3000
   cookiePassword: passwordpasswordpasswordpasswordpassword
   messageQueueHost: amq
-  claimQueueAddress: claim
+  applyQueueAddress: ffc-pay-apply
   googleTagManagerKey: GTM-N5QK7RL
   protectiveMonitoringUrl:
 

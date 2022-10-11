@@ -49,7 +49,7 @@ overridden by build and release pipelines.
 | APPINSIGHTS_CLOUDROLE          | Role used for filtering metrics           | no        |                    |                             | Set to `ffc-demo-apply-web-local` in docker compose files                               |
 | APPINSIGHTS_INSTRUMENTATIONKEY | Key for application insight               | no        |                    |                             | App insights only enabled if key is present. Note: Silently fails for invalid key |
 | CACHE_NAME                     | Cache name                                | no        | redisCache         |                             |                                                                                   |
-| CLAIM_QUEUE_ADDRESS            | claim queue name                          | no        |                    | claim                       |                                                                                   |
+| APPLY_QUEUE_ADDRESS            | claim queue name                          | no        |                    | claim                       |                                                                                   |
 | COOKIE_PASSWORD                | Redis cookie password                     | yes       |                    |                             |                                                                                   |
 | NODE_ENV                       | Node environment                          | no        | development        | development,test,production |                                                                                   |
 | PORT                           | Port number                               | no        | 3000               |                             |                                                                                   |
@@ -62,7 +62,7 @@ overridden by build and release pipelines.
 Running the integration tests locally requires access to ASB, this can be
 achieved by setting the following environment variables:
 `MESSAGE_QUEUE_HOST`, `MESSAGE_QUEUE_PASSWORD`, `MESSAGE_QUEUE_USER`.
-`CLAIM_QUEUE_ADDRESS` must be set to a valid, developer specific queue that is
+`APPLY_QUEUE_ADDRESS` must be set to a valid, developer specific queue that is
 available on ASB e.g. `ffc-demo-claim-<initials>` where `<initials>` are the
 initials of the developer.
 

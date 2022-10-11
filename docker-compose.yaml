@@ -10,8 +10,8 @@ services:
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-demo-apply-web-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
-      CLAIM_QUEUE_ADDRESS: ${CLAIM_QUEUE_ADDRESS:-ffc-demo-claim}${MESSAGE_QUEUE_SUFFIX}
-      COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie      
+      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-apply}${MESSAGE_QUEUE_SUFFIX}
+      COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie
       MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
       MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
       MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}

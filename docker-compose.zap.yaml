@@ -8,7 +8,7 @@ services:
     image: ffc-demo-apply-web-development
     environment:
       NODE_ENV: test
-      CLAIM_QUEUE_ADDRESS: ${CLAIM_QUEUE_ADDRESS:-ffc-demo-claim}
+      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-claim}
     volumes:
       - ./test-output:/home/node/test-output
 

@@ -85,6 +85,6 @@ value.catboxOptions = {
   tls: value.isProd ? {} : undefined,
   partition: value.redisPartition
 }
-value.claimQueueConfig = mqConfig.claimQueueConfig
+value.applyQueueConfig = mqConfig.applyQueueConfig
 
 module.exports = value
