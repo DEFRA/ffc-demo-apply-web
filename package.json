@@ -31,7 +31,7 @@
   "dependencies": {
     "@envage/hapi-govuk-question-page": "0.4.0",
     "@hapi/catbox-redis": "6.0.2",
-    "@hapi/hapi": "19.2.0",
+    "@hapi/hapi": "20.2.0",
     "@hapi/hoek": "9.1.1",
     "@hapi/inert": "6.0.3",
     "@hapi/vision": "6.1.0",
