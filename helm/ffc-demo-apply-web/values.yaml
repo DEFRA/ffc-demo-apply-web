@@ -1,4 +1,5 @@
 environment: development
+environmentCode:
 name: ffc-demo-apply-web
 namespace: ffc-demo
 image: ffc-demo-apply-web
