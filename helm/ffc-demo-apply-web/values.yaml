@@ -41,7 +41,7 @@ container:
   port: 3000
   cookiePassword: passwordpasswordpasswordpasswordpassword
   messageQueueHost: amq
-  applyQueueAddress: ffc-pay-apply
+  applyQueueAddress: ffc-demo-apply
   googleTagManagerKey: GTM-N5QK7RL
   protectiveMonitoringUrl:
 
