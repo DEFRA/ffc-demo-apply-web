@@ -3,7 +3,6 @@ services:
   ffc-demo-apply-web-acceptance:
     build: .
     image: ffc-demo-apply-web-acceptance
-    container_name: webdriver-cuke
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
