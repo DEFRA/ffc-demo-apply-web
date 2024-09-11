@@ -1,9 +1,17 @@
-require('./services/app-insights').setup()
-const createServer = require('./server')
+import { setup } from './insights.js'
+import 'log-timestamp'
+import { createServer } from './server.js'
 
-createServer()
-  .then(server => server.start())
-  .catch(err => {
-    console.error('App crashed', err)
-    process.exit(1)
-  })
+const init = async () => {
+  const server = await createServer()
+  await server.start()
+  console.log('Server running on %s', server.info.uri)
+}
+
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  process.exit(1)
+})
+
+setup()
+init()

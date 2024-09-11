@@ -1,8 +1,8 @@
-const mqConfig = require('../config').applyQueueConfig
-const { MessageSender } = require('ffc-messaging')
-const createMessage = require('./create-message')
-const sessionHandler = require('../services/session-handler')
-const sendProtectiveMonitoringEvent = require('../services/protective-monitoring-service')
+import { applyQueueConfig as mqConfig } from '../config/index.js'
+import { MessageSender } from 'ffc-messaging'
+import createMessage from './create-message.js'
+import SessionHandler from '../services/session-handler.js'
+import ProtectiveMonitoring from '../services/protective-monitoring-service.js'
 
 let claimSender
 
@@ -22,11 +22,12 @@ process.on('SIGINT', async () => {
 
 async function publishClaim (request) {
   claimSender = new MessageSender(mqConfig)
-  const claim = sessionHandler.get(request, 'claim')
+  const claim = new SessionHandler().get(request, 'claim')
   const message = createMessage(claim)
   await claimSender.sendMessage(message)
-  await sendProtectiveMonitoringEvent(request, claim, 'Claim submitted')
+  const protectiveMonitoring = new ProtectiveMonitoring()
+  await protectiveMonitoring.sendEvent(request, claim, 'Claim submitted')
   await claimSender.closeConnection()
 }
 
-module.exports = publishClaim
+export default publishClaim

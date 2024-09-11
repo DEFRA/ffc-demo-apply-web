@@ -1,5 +1,5 @@
-const sessionHandler = require('../../services/session-handler')
-const { asArray } = require('../../util/array-util')
+import SessionHandler from '../../services/session-handler.js'
+import { asArray } from '../../util/array-util.js'
 
 const questionPageOptions = {
   ext: {
@@ -10,7 +10,7 @@ const questionPageOptions = {
           if (dataToSet.mineType !== undefined) {
             dataToSet.mineType = asArray(dataToSet.mineType)
           }
-          sessionHandler.update(request, 'claim', dataToSet)
+          new SessionHandler().update(request, 'claim', dataToSet)
         }
         return h.continue
       }
@@ -18,4 +18,4 @@ const questionPageOptions = {
   }
 }
 
-module.exports = questionPageOptions
+export default questionPageOptions

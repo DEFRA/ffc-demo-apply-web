@@ -1,12 +1,12 @@
-const ViewModel = require('./models/cookies-policy')
-const { updatePolicy } = require('../../cookies')
-const Joi = require('joi')
+import Policy from './models/cookies-policy.js'
+import { updatePolicy } from '../../cookies/index.js'
+import Joi from 'joi'
 
-module.exports = [{
+const cookies = [{
   method: 'GET',
   path: '/cookies',
   handler: (request, h) => {
-    return h.view('cookies/cookie-policy', new ViewModel(request.state.cookies_policy, request.query.updated))
+    return h.view('cookies/cookie-policy', new Policy().ViewModel(request.state.cookies_policy, request.query.updated))
   }
 }, {
   method: 'POST',
@@ -27,3 +27,5 @@ module.exports = [{
     }
   }
 }]
+
+export default cookies

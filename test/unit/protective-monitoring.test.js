@@ -1,13 +1,14 @@
-const mockSendEvent = jest.fn()
-jest.mock('ffc-protective-monitoring', () => {
-  return {
-    PublishEvent: jest.fn().mockImplementation(() => {
-      return { sendEvent: mockSendEvent }
-    })
-  }
-})
+import { PublishEvent } from 'ffc-protective-monitoring'
+import ProtectiveMonitoring from '../../app/services/protective-monitoring-service'
+import { jest } from '@jest/globals'
+jest.mock('ffc-protective-monitoring')
 
-const sendProtectiveMonitoringEvent = require('../../app/services/protective-monitoring-service')
+const mockSendEvent = jest
+  .spyOn(PublishEvent.prototype, 'sendEvent')
+  .mockImplementation(() => {
+    console.log('mocked function sendEvent')
+  })
+
 let request
 
 describe('send protective monitoring event', () => {
@@ -26,8 +27,8 @@ describe('send protective monitoring event', () => {
         'x-forwarded-for': '127.0.0.1'
       }
     }
-
-    await sendProtectiveMonitoringEvent(request, claim, 'Test message')
+    const protectiveMonitoring = new ProtectiveMonitoring()
+    await protectiveMonitoring.sendEvent(request, claim, 'Test message')
     expect(mockSendEvent).toHaveBeenCalledTimes(1)
   })
 
@@ -40,7 +41,8 @@ describe('send protective monitoring event', () => {
       }
     }
 
-    await sendProtectiveMonitoringEvent(request, claim, 'Test message')
+    const protectiveMonitoring = new ProtectiveMonitoring()
+    await protectiveMonitoring.sendEvent(request, claim, 'Test message')
     expect(mockSendEvent).toHaveBeenCalledTimes(2)
   })
 })

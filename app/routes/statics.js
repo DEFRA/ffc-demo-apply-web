@@ -1,14 +1,14 @@
-const config = require('../config')
+import { config } from '../config/index.js'
 
-module.exports = [{
+export const routeAssets = {
   method: 'GET',
   path: '/assets/{path*}',
   options: {
+    auth: false,
     handler: {
       directory: {
         path: [
-          'node_modules/govuk-frontend/govuk/assets',
-          'app/static'
+          'node_modules/govuk-frontend/govuk/assets'
         ]
       }
     },
@@ -17,15 +17,17 @@ module.exports = [{
       privacy: 'private'
     }
   }
-}, {
+}
+export const routeStatics = {
   method: 'GET',
   path: '/static/{path*}',
   options: {
+    auth: false,
     handler: {
       directory: {
         path: [
-          'node_modules/govuk-frontend/govuk/assets',
-          'app/dist'
+          'app/dist',
+          'node_modules/govuk-frontend/govuk/assets'
         ]
       }
     },
@@ -34,4 +36,5 @@ module.exports = [{
       privacy: 'private'
     }
   }
-}]
+}
+export default { routeAssets, routeStatics }

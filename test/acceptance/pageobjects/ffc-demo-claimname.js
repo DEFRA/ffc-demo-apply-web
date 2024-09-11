@@ -12,6 +12,7 @@ class ClaimName extends Page {
     super.open('')
     browser.pause(3000)
   }
+
   /**
      * your page specific methods
      */
@@ -20,6 +21,7 @@ class ClaimName extends Page {
       this.headerImage.waitForDisplayed(10000)
     }
   }
+
   async claimName () {
     await (await this.claimNameInput).addValue('kaz')
   }

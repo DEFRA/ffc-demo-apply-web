@@ -1,5 +1,5 @@
-const moment = require('moment')
-const fs = require('fs')
+import moment from 'moment'
+import fs from 'fs'
 
 const SCREENSHOTS_DIR = './output/screenshots'
 const PAGE_SOURCES_DIR = './output/page-sources'
@@ -40,7 +40,7 @@ function getBrowserName (browser) {
   return browser.capabilities.browserName.replace(/\s+/g, '')
 }
 
-module.exports = {
+export default {
   takeScreenshot,
   savePageSource
 }

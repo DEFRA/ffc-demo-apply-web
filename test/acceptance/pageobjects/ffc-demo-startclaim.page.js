@@ -29,6 +29,7 @@ class StartPage extends Page {
       this.headerImage.waitForDisplayed(10000)
     }
   }
+
   login (username, password) {
     this.usernameInput.setValue(username)
     this.passwordInput.setValue(password)
@@ -36,6 +37,7 @@ class StartPage extends Page {
     this.cookiesGotIt.click()
     this.loginButton.click()
   }
+
   startClaim () {
     this.startClaim.click()
   }

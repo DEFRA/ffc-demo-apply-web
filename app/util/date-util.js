@@ -1,6 +1,6 @@
-const moment = require('moment')
+import moment from 'moment'
 
-module.exports = {
+const dateUtil = {
   buildDate: function (year, month, day, validate) {
     if (validate) {
       const testDate = moment([year, month - 1, day])
@@ -11,3 +11,5 @@ module.exports = {
     return new Date(year, month - 1, day)
   }
 }
+
+export default dateUtil
