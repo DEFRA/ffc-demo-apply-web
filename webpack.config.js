@@ -1,13 +1,17 @@
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 
 console.log(`Running webpack in ${isDev ? 'development' : 'production'} mode`)
 
-module.exports = {
+const pack = {
   entry: {
     core: './app/frontend/css/index.js',
     cookies: './app/frontend/js/cookies.js'
@@ -37,7 +41,10 @@ module.exports = {
               }
             }
           }
-        ]
+        ],
+        resolve: {
+          modules: [resolve(__dirname, 'node_modules'), 'node_modules']
+        }
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -46,6 +53,9 @@ module.exports = {
           options: {
             outputPath: 'images/'
           }
+        },
+        resolve: {
+          modules: [resolve(__dirname, 'node_modules'), 'node_modules']
         }
       },
       {
@@ -55,13 +65,16 @@ module.exports = {
           options: {
             outputPath: 'fonts/'
           }
+        },
+        resolve: {
+          modules: [resolve(__dirname, 'node_modules'), 'node_modules']
         }
       }
     ]
   },
   output: {
     filename: 'js/[name].[fullhash].js',
-    path: path.resolve(__dirname, 'app/dist'),
+    path: resolve(__dirname, 'app/dist'),
     library: '[name]'
   },
   plugins: [
@@ -83,3 +96,5 @@ module.exports = {
     })
   ]
 }
+
+export default pack

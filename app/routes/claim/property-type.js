@@ -1,21 +1,22 @@
-const sessionHandler = require('../../services/session-handler')
+import SessionHandler from '../../services/session-handler.js'
+import pageDefinition from './page-definitions/date-of-subsidence.js'
+import questionsOptions from './question-page-options.js'
 
-module.exports = [
-  {
-    method: ['GET', 'POST'],
-    path: '/claim/property-type',
-    handler: {
-      'hapi-govuk-question-page': {
-        getConfig: () => {
-          return {
-            $VIEW$: { serviceName: 'FFC Demo Service' }
-          }
-        },
-        getData: (request) => sessionHandler.get(request, 'claim'),
-        getNextPath: () => './accessible',
-        pageDefinition: require('./page-definitions/property-type')
-      }
-    },
-    options: require('./question-page-options')
-  }
-]
+const route = {
+  method: ['GET', 'POST'],
+  path: '/claim/property-type',
+  handler: {
+    'hapi-govuk-question-page': {
+      getConfig: () => {
+        return {
+          $VIEW$: { serviceName: 'FFC Demo Service' }
+        }
+      },
+      getData: (request) => new SessionHandler().get(request, 'claim'),
+      getNextPath: () => './accessible',
+      pageDefinition
+    }
+  },
+  options: questionsOptions
+}
+export default route

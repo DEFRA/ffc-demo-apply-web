@@ -1,4 +1,4 @@
-const { ServiceBusClient } = require('@azure/service-bus')
+import { ServiceBusClient } from '@azure/service-bus'
 
 // When calling this within a test script, ensure there is a generous timeout
 // for the connections to complete, `10000` should be enough (per queue).
@@ -33,6 +33,4 @@ async function clearQueue (config) {
   }
 }
 
-module.exports = {
-  clearQueue
-}
+export default clearQueue

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   ffc-demo-apply-web:
     command: npm run start:watch
@@ -13,10 +11,10 @@ services:
       - ./test-output:/home/node/test-output
 
   zap-baseline-scan:
-    image: owasp/zap2docker-stable:2.9.0
-    command: zap-baseline.py -t http://ffc-demo-apply-web:${PORT:-3000} -c config/zap.conf -r test-output/zap-report.html -a -d -I
+    image: softwaresecurityproject/zap-bare:2.14.0
+    command: zap.sh -cmd -quickurl ${TEST_ENVIRONMENT_ROOT_URL:-http://ffc-demo-apply-web:3000} -zapit ${TEST_ENVIRONMENT_ROOT_URL:-http://ffc-demo-apply-web:3000} -configfile config/zap.conf -quickout test-output/zap-report.html -silent -quickprogress
     depends_on:
       - ffc-demo-apply-web
     volumes:
-      - ./test-output:/zap/wrk/test-output
-      - ./zap:/zap/wrk/config
+      - ./test-output:/zap/test-output
+      - ./zap:/zap/config

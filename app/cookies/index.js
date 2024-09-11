@@ -1,6 +1,6 @@
-const config = require('../config').cookieOptions
+import config from '../config/index.js'
 
-function getCurrentPolicy (request, h) {
+export function getCurrentPolicy (request, h) {
   let cookiesPolicy = request.state.cookies_policy
   if (!cookiesPolicy) {
     cookiesPolicy = createDefaultPolicy(h)
@@ -10,11 +10,11 @@ function getCurrentPolicy (request, h) {
 
 function createDefaultPolicy (h) {
   const cookiesPolicy = { confirmed: false, essential: true, analytics: false }
-  h.state('cookies_policy', cookiesPolicy, config)
+  h.state('cookies_policy', cookiesPolicy, config.cookieOptions)
   return cookiesPolicy
 }
 
-function updatePolicy (request, h, analytics) {
+export function updatePolicy (request, h, analytics) {
   let cookiesPolicy = request.state.cookies_policy
   if (!cookiesPolicy) {
     cookiesPolicy = createDefaultPolicy(h)
@@ -23,10 +23,12 @@ function updatePolicy (request, h, analytics) {
   cookiesPolicy.analytics = analytics
   cookiesPolicy.confirmed = true
 
-  h.state('cookies_policy', cookiesPolicy, config)
+  h.state('cookies_policy', cookiesPolicy, config.cookieOptions)
 }
 
-module.exports = {
-  getCurrentPolicy,
-  updatePolicy
-}
+// export default  {
+//   getCurrentPolicy,
+//   updatePolicy
+// }
+
+export default { getCurrentPolicy, updatePolicy }

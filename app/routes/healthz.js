@@ -1,9 +1,9 @@
-module.exports = {
+const route = {
   method: 'GET',
   path: '/healthz',
-  options: {
-    handler: (request, h) => {
-      return h.response('ok').code(200)
-    }
+  handler: (request, h) => {
+    return h.response('ok').code(200)
   }
 }
+
+export default route

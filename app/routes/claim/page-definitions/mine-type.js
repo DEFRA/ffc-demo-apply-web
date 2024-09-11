@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   submitButtonText: 'Save and continue',
   components: [{
     type: 'CheckboxesField',

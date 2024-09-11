@@ -1,9 +1,11 @@
-const cookies = require('../../app/cookies')
-let request
-let h
-const defaultCookie = { confirmed: false, essential: true, analytics: false }
+import * as cookies from '../../app/cookies'
+import { jest } from '@jest/globals'
 
 describe('cookies', () => {
+  let request
+  let h
+  const defaultCookie = { confirmed: false, essential: true, analytics: false }
+
   beforeEach(() => {
     request = {
       state: {

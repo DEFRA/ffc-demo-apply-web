@@ -2,18 +2,14 @@ environment: development
 environmentCode:
 name: ffc-demo-apply-web
 namespace: ffc-demo
-image: ffc-demo-apply-web
 workstream: ffc-demo
+image: ffc-demo-apply-web
+
+appInsights:
+  connectionString:
 
 labels:
   component: web
-
-appInsights:
-  key:
-
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
 
 containerConfigMap:
   name: ffc-demo-apply-web-config-map
@@ -21,6 +17,14 @@ containerConfigMap:
 containerSecret:
   name: ffc-demo-apply-web-container-secret
   type: Opaque
+
+deployment:
+  restartPolicy: Always
+  priorityClassName: low
+  replicas: 1
+  minReadySeconds: 5
+  imagePullSecret:
+  useLinkerd: true
 
 service:
   port: 80
@@ -31,7 +35,7 @@ container:
   redisPassword: redis
   redisPort: 6379
   redisPartition: ffc-demo
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   requestMemory: 10Mi
   requestCpu: 10m
   limitMemory: 80Mi
@@ -47,16 +51,8 @@ container:
 
 ingress:
   class: nginx
-  endpoint: ffc-demo
+  endpoint: ffc-demo-apply-web
   server: example.com
-
-deployment:
-  restartPolicy: Always
-  priorityClassName: low
-  replicas: 1
-  minReadySeconds: 5
-  imagePullSecret:
-  useLinkerd: true
 
 readinessProbe:
   path: /healthy
@@ -64,6 +60,7 @@ readinessProbe:
   initialDelaySeconds: 20
   periodSeconds: 10
   failureThreshold: 3
+  timeoutSeconds: 5
 
 livenessProbe:
   path: /healthz
@@ -71,5 +68,10 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
+  timeoutSeconds: 5
 
 aadPodIdentity: true
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID

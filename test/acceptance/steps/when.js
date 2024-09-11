@@ -19,7 +19,7 @@ import ClaimName from '../pageobjects/ffc-demo-claimname'
 import PropertyAccessible from '../pageobjects/ffc-demo-property-accessible'
 import PropertyMineType from '../pageobjects/ffc-demo-mine-type'
 
-const { When } = require('cucumber')
+import { When } from 'cucumber'
 
 When(
   /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,

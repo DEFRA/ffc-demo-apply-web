@@ -1,22 +1,26 @@
-const hoek = require('@hapi/hoek')
+import { merge } from '@hapi/hoek'
 
-module.exports = {
-  get: function (request, key) {
+class SessionHandler {
+  get (request, key) {
     let object = request.yar.get(key)
     if (object == null) {
       object = {}
     }
     return object
-  },
-  set: function (request, key, value) {
+  }
+
+  set (request, key, value) {
     request.yar.set(key, value)
-  },
-  update: function (request, key, object) {
+  }
+
+  update (request, key, object) {
     const existing = this.get(request, key)
-    hoek.merge(existing, object, { mergeArrays: false })
+    merge(existing, object, { mergeArrays: false })
     this.set(request, key, existing)
-  },
-  clear: function (request, key) {
+  }
+
+  clear (request, key) {
     request.yar.clear(key)
   }
 }
+export default SessionHandler

@@ -1,12 +1,14 @@
-const sessionHandler = require('../services/session-handler')
+import SessionHandler from '../services/session-handler.js'
 
-module.exports = {
+const route = {
   method: 'GET',
   path: '/clear-session',
   options: {
     handler: (request, h) => {
-      sessionHandler.clear(request, 'claim')
+      new SessionHandler().clear(request, 'claim')
       return h.redirect('/')
     }
   }
 }
+
+export default route
