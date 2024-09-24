@@ -1,7 +1,7 @@
-const config = require('../config').cookieOptions
-const { getCurrentPolicy } = require('../cookies')
+import { cookieOptions as config } from '../config'
+import { getCurrentPolicy } from '../cookies'
 
-module.exports = {
+export default {
   plugin: {
     name: 'cookies',
     register: (server, options) => {

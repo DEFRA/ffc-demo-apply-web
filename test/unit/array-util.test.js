@@ -1,4 +1,4 @@
-const { asArray } = require('../../app/util/array-util')
+import { asArray } from '../../app/util/array-util'
 const item1 = 'one'
 const item2 = 'two'
 describe('array util', () => {

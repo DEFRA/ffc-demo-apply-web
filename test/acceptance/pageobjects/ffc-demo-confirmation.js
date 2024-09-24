@@ -12,6 +12,7 @@ class Confirmation extends Page {
     super.open('')
     browser.pause(3000)
   }
+
   /**
      * your page specific methods
      */

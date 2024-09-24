@@ -1,5 +1,6 @@
-const Joi = require('joi')
-const mqConfig = require('./mq-config')
+import Joi from 'joi'
+
+import applyQueueConfig from './mq-config.js'
 
 // Define config schema
 const schema = Joi.object({
@@ -78,13 +79,17 @@ if (!value.useRedis) {
   console.info('Redis disabled, using in memory cache')
 }
 
-value.catboxOptions = {
+const catboxOptions = {
   host: value.redisHost,
   port: value.redisPort,
   password: value.redisPassword,
   tls: value.isProd ? {} : undefined,
-  partition: value.redisPartition
+  partition: value.redisPartition,
+  segment: config.cacheName
 }
-value.applyQueueConfig = mqConfig.applyQueueConfig
 
-module.exports = value
+value.catboxOptions = catboxOptions
+value.applyQueueConfig = applyQueueConfig
+
+export { catboxOptions, config, applyQueueConfig }
+export default value

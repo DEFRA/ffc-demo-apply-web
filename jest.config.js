@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.js',
@@ -7,16 +7,14 @@ module.exports = {
   coverageDirectory: 'test-output',
   coverageReporters: [
     'text-summary',
-    'cobertura',
     'lcov'
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
-    '<rootDir>/app/dist/',
     '<rootDir>/test-output/',
     '<rootDir>/test/',
-    '<rootDir>/jest.config.js',
-    '<rootDir>/jest.setup.js'
+    '<rootDir>/rename.js',
+    '<rootDir>/jest.config.js'
   ],
   modulePathIgnorePatterns: [
     'node_modules'
@@ -32,6 +30,10 @@ module.exports = {
       }
     ]
   ],
-  setupFilesAfterEnv: ['./jest.setup.js'],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  testPathIgnorePatterns: [],
+  verbose: true,
+  transform: {}
 }
+
+export default config

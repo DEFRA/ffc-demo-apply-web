@@ -1,44 +1,42 @@
-const path = require('path')
-const nunjucks = require('nunjucks')
-const config = require('../config')
-const { version } = require('../../package.json')
+import nunjucks from 'nunjucks'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+import { config } from '../config/index.js'
+import vision from '@hapi/vision'
 
-module.exports = {
-  plugin: require('@hapi/vision'),
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const views = {
+  plugin: vision,
   options: {
     engines: {
       njk: {
         compile: (src, options) => {
           const template = nunjucks.compile(src, options.environment)
-
-          return (context) => {
-            return template.render(context)
-          }
-        },
-        prepare: (options, next) => {
-          options.compileOptions.environment = nunjucks.configure([
-            path.join(options.relativeTo || process.cwd(), ...options.path),
-            'app/views',
-            'node_modules/govuk-frontend/'
-          ], {
-            autoescape: true,
-            watch: false
-          })
-
-          return next()
+          return context => template.render(context)
         }
       }
     },
-    path: ['../views', '../../node_modules/@envage/hapi-govuk-question-page'],
     relativeTo: __dirname,
-    isCached: !config.isDev,
+    compileOptions: {
+      environment: nunjucks.configure([
+        join(__dirname, '../views'),
+        join(__dirname, '../app', 'dist'),
+        'node_modules/govuk-frontend/dist/'
+      ])
+    },
+    path: '../views',
     context: {
-      appVersion: version,
-      assetPath: '/static',
-      govukAssetPath: '/assets',
-      serviceName: 'FFC Demo Service',
-      pageTitle: 'FFC Demo Service - GOV.UK',
-      googleTagManagerKey: config.googleTagManagerKey
+      appVersion: process.env.npm_package_version,
+      assetpath: '/node_modules/govuk-frontend/dist/assets',
+      govukAssetpath: '/govuk/assets',
+      serviceName: 'FFC Demo Apply Web',
+      pageTitle: 'FFC Demo Apply Web - GOV.UK',
+      googleTagManagerKey: config.googleTagManagerKey,
+      analyticsTagKey: config.analyticsTagKey,
+      startPageUrl: config.startPageUrl
     }
   }
 }
+export default views

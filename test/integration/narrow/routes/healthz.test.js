@@ -1,10 +1,8 @@
-describe('Healthz test', () => {
-  let createServer
-  let server
+import { createServer } from '../../../../app/server'
+import { jest } from '@jest/globals'
 
-  beforeAll(async () => {
-    createServer = require('../../../../app/server')
-  })
+describe('Healthz test', () => {
+  let server
 
   beforeEach(async () => {
     server = await createServer()

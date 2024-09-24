@@ -6,4 +6,4 @@ function createMessage (claim) {
   }
 }
 
-module.exports = createMessage
+export default createMessage

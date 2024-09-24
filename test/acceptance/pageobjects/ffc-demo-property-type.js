@@ -30,7 +30,7 @@ class PropertyType extends Page {
   }
 
   async clickElementText (test) {
-    var text = (test).getElementText()
+    const text = (test).getElementText()
     return text
   }
 

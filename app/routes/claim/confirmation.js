@@ -1,13 +1,14 @@
-const sessionHandler = require('../../services/session-handler')
-const ViewModel = require('./models/confirmation')
+import SessionHandler from '../../services/session-handler.js'
+import ViewModel from './models/confirmation.js'
 
-module.exports = {
+const sessionHandler = new SessionHandler()
+const route = {
   method: 'GET',
   path: '/claim/confirmation',
-  options: {
-    handler: (request, h) => {
-      const claim = sessionHandler.get(request, 'claim')
-      return h.view('claim/confirmation', new ViewModel(claim))
-    }
+  handler: (request, h) => {
+    const claim = sessionHandler.get(request, 'claim')
+    return h.view('claim/confirmation', new ViewModel(claim))
   }
 }
+
+export default route

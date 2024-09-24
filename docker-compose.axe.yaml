@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   ffc-demo-apply-web:
     command: npm run start:watch
@@ -8,7 +6,7 @@ services:
     image: ffc-demo-apply-web-development
     environment:
       NODE_ENV: test
-      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-claim}
+      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-apply}
     volumes:
       - ./test-output:/home/node/test-output
 
@@ -16,7 +14,7 @@ services:
     image: defradigital/ffc-axe
     depends_on:
       - ffc-demo-apply-web
-    command: sh -c "/scripts/wait ffc-demo-apply-web:3000 -- axe --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit ffc-demo-apply-web:3000, ffc-demo-apply-web:3000/claim/name, ffc-demo-apply-web:3000/claim/property, ffc-demo-apply-web:3000/claim/accessible, ffc-demo-apply-web:3000/claim/mine-type, ffc-demo-apply-web:3000/claim/date-of-subsidence, ffc-demo-apply-web:3000/claim/email, ffc-demo-apply-web:3000/claim/confirmation"
+    command: sh -c "/scripts/wait ffc-demo-apply-web:3000 -- axe --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit ffc-demo-apply-web:3000"
     volumes:
       - ./test-output:/test-output
       - ./scripts:/scripts

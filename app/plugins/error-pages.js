@@ -2,7 +2,7 @@
 * Add an `onPreResponse` listener to return error pages
 */
 
-module.exports = {
+const errorPage = {
   plugin: {
     name: 'error-pages',
     register: (server, options) => {
@@ -21,7 +21,7 @@ module.exports = {
           }
 
           request.log('error', {
-            statusCode: statusCode,
+            statusCode,
             data: response.data,
             message: response.message
           })
@@ -34,3 +34,5 @@ module.exports = {
     }
   }
 }
+
+export default errorPage

@@ -1,4 +1,0 @@
-version: '3.8'
-services:
-  ffc-demo-apply-web-acceptance:
-    command: npm run test:debug

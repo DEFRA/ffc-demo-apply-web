@@ -1,9 +1,7 @@
 {% extends "_layout.njk" %}
-
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
 {% block beforeContent %}
   {{ govukBreadcrumbs({
     items: [
@@ -13,29 +11,23 @@
       }]
   }) }}
 {% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">FFC Demo Service</h1>
-
       <p class="govuk-body">
-        This is a demo application for the technical investigation of patterns and practices
-        in developing production quality containerised, cloud native, microservice based applications
-        within the Future Farming and Countryside Programme (FFC).
+        This is a demo application for the technical investigation of patterns and practices in developing production quality containerised, cloud native, microservice based applications within the Future
+        Farming and Countryside Programme (FFC).
       </p>
-
       {{ govukWarningText({
         text: "This is not a real service and is for demonstration and investigation purposes only.",
         iconFallbackText: "Warning"
       }) }}
-
       <p class="govuk-body">Use this example service to:</p>
-
       <ul class="govuk-list govuk-list--bullet">
-        <li>simulate submitting a claim for financial aid if your property is affected by subsidence caused by a mine shaft</li>
+        <li>Test Database connection, Service Buss Connection and Redis Connection</li>
       </ul>
-
+ 
       <p class="govuk-body">Registering takes around 5 minutes.</p>
 
       {{ govukButton({
@@ -44,9 +36,8 @@
         isStartButton: true,
         text: "Start new claim"
       }) }}
-
+      
       <h2 class="govuk-heading-m">Before you start</h2>
-
       <p class="govuk-body">This is a proof of concept sample application. Actual financial aid is not available.</p>
     </div>
     <div class="govuk-grid-column-one-third">
@@ -69,7 +60,6 @@
           </ul>
         </nav>
       </aside>
-
     </div>
   </div>
 {% endblock %}

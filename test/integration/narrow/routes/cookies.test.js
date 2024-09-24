@@ -1,9 +1,9 @@
+import { createServer } from '../../../../app/server'
+
 describe('cookies route', () => {
-  let createServer
   let server
 
   beforeEach(async () => {
-    createServer = require('../../../../app/server')
     server = await createServer()
     await server.initialize()
   })

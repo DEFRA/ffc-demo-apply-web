@@ -6,4 +6,4 @@ function ViewModel (claim) {
   }
 }
 
-module.exports = ViewModel
+export default ViewModel
