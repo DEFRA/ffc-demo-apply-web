@@ -39,4 +39,4 @@ if (mqResult.error) {
 
 const applyQueueConfig = { ...mqResult.value.messageQueue, ...mqResult.value.applyQueue }
 
-export default { applyQueueConfig }
+export default applyQueueConfig
