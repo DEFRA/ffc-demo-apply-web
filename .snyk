@@ -1,10 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
 version: v1.25.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
-ignore:
-  SNYK-JS-COOKIE-8163060:
-    - '*':
-        reason: None Given
-        expires: 2024-12-14T15:52:02.273Z
-        created: 2024-11-14T15:52:02.279Z
+ignore: {}
 patch: {}
