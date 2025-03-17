@@ -2,4 +2,4 @@ resources:
   identity: demo-apply-web-role
   queues:
     - name: ffc-demo-apply
-      role: reciever
+      role: sender
