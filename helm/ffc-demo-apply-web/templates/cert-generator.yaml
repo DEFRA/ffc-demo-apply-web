@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-generate-cert
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    "helm.sh/hook": pre-install
+spec:
+  template:
+    spec:
+      containers:
+      - name: openssl
+        image: alpine
+        command:
+        - /bin/sh
+        - -c
+        - |
+          apk add --no-cache openssl
+          openssl req -x509 -newkey rsa:4096 -keyout /tls/tls.key -out /tls/tls.crt -days 365 -nodes -subj "/CN=yourdomain.com"
+          kubectl create secret tls {{ .Release.Name }}-tls --cert=/tls/tls.crt --key=/tls/tls.key --namespace {{ .Release.Namespace }}
+        volumeMounts:
+        - name: tls
+          mountPath: /tls
+      restartPolicy: Never
+      volumes:
+      - name: tls
+        emptyDir: {}
