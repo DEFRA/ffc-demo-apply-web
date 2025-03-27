@@ -77,5 +77,5 @@ azureIdentity:
   resourceID: not-a-real-resourceID
 
 tlsSecret:
-  cert: certs
+  cert: cert
   key: key
