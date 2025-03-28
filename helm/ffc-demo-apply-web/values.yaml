@@ -76,3 +76,6 @@ azureIdentity:
   clientID: not-a-real-clientID
   resourceID: not-a-real-resourceID
 
+tlsSecret:
+  cert: cert
+  key: key
