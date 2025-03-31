@@ -1,3 +1,3 @@
-@Library('defra-library@v-10') _
+@Library('defra-library@ml/https-endpoint') _
 
 buildNodeJs()
