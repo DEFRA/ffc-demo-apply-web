@@ -1,0 +1,25 @@
+name: 3.$(Rev:r)
+
+parameters:
+  - name: appVersion
+    type: string
+
+trigger:
+  - main
+  - feature/*
+
+resources:
+  repositories:
+    - repository: templates
+      endpoint: DEFRA
+      type: github
+      name: defra/fcp-pipeline-common
+      ref: pl-5-ado-sonar
+      
+extends:
+  template: fcp-common-pipeline.yaml@templates
+  parameters: 
+    appVersion: ${{ parameters.appVersion }}
+    
+
+    
