@@ -10,7 +10,7 @@ resources:
       endpoint: DEFRA
       type: github
       name: defra/fcp-pipeline-common
-      ref: main
+      ref: feature/stage-init
 
 extends:
   template: fcp-common-pipeline.yaml@templates
