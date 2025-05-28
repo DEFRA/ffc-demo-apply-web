@@ -12,7 +12,7 @@ resources:
       endpoint: DEFRA
       type: github
       name: defra/fcp-pipeline-common
-      ref: pl-5-ado-sonar
+      ref: main
       
 extends:
   template: fcp-common-pipeline.yaml@templates
