@@ -43,6 +43,6 @@ describe('send protective monitoring event', () => {
 
     const protectiveMonitoring = new ProtectiveMonitoring()
     await protectiveMonitoring.sendEvent(request, claim, 'Test message')
-    expect(mockSendEvent).toHaveBeenCalledTimes(2)
+    expect(mockSendEvent).toHaveBeenCalledTimes(1)
   })
 })

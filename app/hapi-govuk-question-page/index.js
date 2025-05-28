@@ -74,6 +74,8 @@ const buildHandlerProviderForOptions = (options = {}) => {
           }
         }
       }
+    } else {
+      throw new Error(`Unsupported method: ${route.method}. Only GET and POST are supported.`)
     }
   }
 }
