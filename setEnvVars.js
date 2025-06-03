@@ -1,0 +1,1 @@
+process.env.COOKIE_PASSWORD = 123456
