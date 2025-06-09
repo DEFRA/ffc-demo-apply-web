@@ -1,1 +1,1 @@
-process.env.COOKIE_PASSWORD = cookiecookiecookiecookiecookiecookie
+process.env.COOKIE_PASSWORD = 'cookiecookiecookiecookiecookiecookie'
