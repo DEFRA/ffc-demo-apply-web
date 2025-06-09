@@ -8,9 +8,6 @@ services:
     command: npm run test
     environment:
       NODE_ENV: test
-      PACT_BROKER_URL: ${PACT_BROKER_URL}
-      PACT_BROKER_USERNAME: ${PACT_BROKER_USERNAME}
-      PACT_BROKER_PASSWORD: ${PACT_BROKER_PASSWORD}
       NODE_OPTIONS: "$NODE_OPTIONS --experimental-vm-modules"
     volumes:
       - ./test:/home/node/test
