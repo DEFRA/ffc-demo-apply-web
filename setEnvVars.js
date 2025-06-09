@@ -1,1 +1,1 @@
-process.env.COOKIE_PASSWORD = 123456
+process.env.COOKIE_PASSWORD = cookiecookiecookiecookiecookiecookie
