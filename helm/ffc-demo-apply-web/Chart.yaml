@@ -5,5 +5,5 @@ name: ffc-demo-apply-web
 version: 1.0.5
 dependencies:
 - name: ffc-helm-library
-  version: 5.0.6-beta
+  version: 5.0.6
   repository: https://raw.githubusercontent.com/defra/ffc-helm-repository/master/
