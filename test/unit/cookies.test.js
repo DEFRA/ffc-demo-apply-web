@@ -23,7 +23,7 @@ describe('cookies', () => {
 
   test('getCurrentPolicy returns default cookie if does not exist', () => {
     process.env.NODE_ENV = 'dev'
-    process.env.COOKIE_PASSWORD = '123456'
+    process.env.COOKIE_PASSWORD = 'cookiecookiecookiecookiecookiecookie'
     const result = cookies.getCurrentPolicy(request, h)
     expect(result).toStrictEqual(defaultCookie)
   })
