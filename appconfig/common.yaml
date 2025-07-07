@@ -1,2 +1,2 @@
 ---
-container.applyQueueAddress: queue:ffc-demo-apply
+container.applyQueueAddress: ffc-demo-apply
