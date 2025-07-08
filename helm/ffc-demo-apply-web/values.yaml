@@ -73,5 +73,15 @@ livenessProbe:
 workloadIdentity: true
 
 azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
+  clientID: not-a-real-value
+  resourceID: not-a-real-value
+
+secretProviderClass:
+  azure:
+    keyvaultName: not-a-real-value
+    tenantID: not-a-real-value
+    clientID: not-a-real-value
+    objects:
+      - objectName: APPINSIGHTS_CONNECTIONSTRING
+      - objectName: COOKIE_PASSWORD
+      - objectName: REDIS_PASSWORD
