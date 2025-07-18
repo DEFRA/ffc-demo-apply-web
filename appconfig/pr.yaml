@@ -1,9 +1,10 @@
 ---
-environment: development
-environmentCode: pr
+environment: production
+environmentCode: snd
 secretProviderClass.azure.keyvaultName: SNDFFCINFKV2001
 container.applyQueueAddress: queue:ffc-demo-apply
 container.protectiveMonitoringUrl: https://dummy.url
-container.redisHostname: sndFFCINFRD2001.redis.cache.windows.net"
-container.redisPort: 6380
-container.messageQueueHost: sndFFCINFSB2001.servicebus.windows.net
+container.redisHostname: SNDFFCINFRD2001.redis.cache.windows.net
+container.messageQueueHost: SNDFFCINFSB2001.servicebus.windows.net
+ingress.server: azure.defra.cloud
+ingress.endpoint: ffc-demo-apply-web-snd
