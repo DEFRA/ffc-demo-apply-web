@@ -1,12 +1,24 @@
-name: '$(Build.SourceBranchName)$(Rev:.r)'
+name: '$(Build.SourceBranchName)$(System.PullRequest.SourceBranch)$(Rev:.r)'
 
 trigger:
   - main
   - feature/*
+  - release/*
 
 pr:
-- main
-- releases/*
+  - main
+  - releases/*
+
+parameters:
+  - name: prDeployment
+    type: boolean
+    default: true
+  - name: branchDeployment
+    type: boolean
+    default: true
+  - name: sndDeployment
+    type: boolean
+    default: true
 
 resources:
   repositories:
@@ -14,12 +26,13 @@ resources:
       endpoint: DEFRA
       type: github
       name: defra/fcp-pipeline-common
-      # ref: feature/build_helm
-      
+      # ref: branch-name
+
 extends:
   template: fcp-common-pipeline.yaml@templates
-  parameters: 
+  parameters:
     appFrameworkType: nodejs
-    
-
+    prDeployment: ${{ parameters.prDeployment }}
+    branchDeployment: ${{ parameters.branchDeployment }}
+    sndDeployment: ${{ parameters.sndDeployment }}
     
