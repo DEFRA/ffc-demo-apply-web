@@ -3,7 +3,6 @@ resources:
   service_bus:
     queues:
       - name: ffc-demo-apply
-        existing: true
         roles:
           - name: sender
           - name: receiver
@@ -32,4 +31,3 @@ resources:
             - name: queueSender
       roles:
         - name: storageAccountContributor
-
