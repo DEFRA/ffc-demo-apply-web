@@ -12,7 +12,10 @@ labels:
   component: web
 
 containerConfigMap:
-  name: ffc-demo-apply-web-config-map
+  name: ffc-demo-apply-web
+
+containerSecret:
+  name: ffc-demo-apply-web
 
 deployment:
   restartPolicy: Always
