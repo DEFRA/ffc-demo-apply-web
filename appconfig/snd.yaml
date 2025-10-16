@@ -7,5 +7,5 @@ container.protectiveMonitoringUrl: https://dummy.url
 container.redisHostname: SNDFFCINFRD2001.redis.cache.windows.net
 container.messageQueueHost: SNDFFCINFSB2001.servicebus.windows.net
 ingress.server: azure.defra.cloud
-ingress.endpoint: ffc-demo-apply-web-snd
+ingress.endpoint: ffc-demo-snd
 

@@ -7,4 +7,4 @@ container.protectiveMonitoringUrl: https://prod-52.northeurope.logic.azure.com:4
 container.redisHostname: PREFFCINFRD1001.redis.cache.windows.net
 container.messageQueueHost: PREFFCINFSB1001.servicebus.windows.net
 ingress.server: azure.defra.cloud
-ingress.endpoint: ffc-demo-apply-web-pre
+ingress.endpoint: ffc-demo-pre
