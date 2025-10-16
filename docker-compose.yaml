@@ -5,14 +5,45 @@ services:
       target: production
     image: ffc-demo-apply-web
     container_name: ffc-demo-apply-web
+    depends_on:
+      - emulator
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-demo-apply-web-local
-      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
-      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-apply}${MESSAGE_QUEUE_SUFFIX}
+      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY:-}
+      APPLY_QUEUE_ADDRESS: ${APPLY_QUEUE_ADDRESS:-ffc-demo-apply}${MESSAGE_QUEUE_SUFFIX:-local}
       COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie
-      MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
-      MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
-      MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}
-      PROTECTIVE_MONITORING_URL: ${PROTECTIVE_MONITORING_URL}
+      MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-emulator}
+      MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-RootManageSharedAccessKey}
+      MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-SAS_KEY_VALUE}
+      PROTECTIVE_MONITORING_URL: ${PROTECTIVE_MONITORING_URL:-}
       REDIS_HOSTNAME: redis
       GOOGLE_TAG_MANAGER_KEY: GTM-N5QK7RL
+
+  sqledge:
+    container_name: "sqledge"
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "DummyStrongPa$$w0rd" # To be filled by user as per policy : https://learn.microsoft.com/en-us/sql/relational-databases/security/strong-passwords?view=sql-server-linux-ver16
+
+  emulator:
+    container_name: "servicebus-emulator"
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
+    pull_policy: always
+    volumes:
+      - "./BusConfig.json:/ServiceBus_Emulator/ConfigFiles/Config.json"
+    ports:
+      - "5672:5672"
+      - "5300:5300"
+    environment:
+      SQL_SERVER: sqledge
+      MSSQL_SA_PASSWORD: "DummyStrongPa$$w0rd" # Password should be same as what is set for SQL Edge
+      ACCEPT_EULA: "Y"
+    depends_on:
+      - sqledge
+
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 5672"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
