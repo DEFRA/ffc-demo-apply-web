@@ -19,7 +19,7 @@ secretProviderClass:
         objectType: secret
       - objectName: prd-redisPassword
         objectType: secret
-  secretProviderClass:
+  secretObjects:
     - secretName: ffc-demo-apply-web
       type: Opaque
       data:
