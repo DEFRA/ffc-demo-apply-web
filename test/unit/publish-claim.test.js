@@ -17,6 +17,10 @@ const mockSendMessage = jest
     console.log('mocked function sendMessage')
   })
 
+const mockCloseConnection = jest
+  .spyOn(MessageSender.prototype, 'closeConnection')
+  .mockImplementation(() => {})
+
 const request = {
   headers: {
     'x-forwarded-for': '127.0.0.1'
@@ -40,10 +44,39 @@ const mockGet = jest
   })
 
 describe('publish claim', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   test('should publish claim', async () => {
     await publishClaim(request)
     expect(mockSendEvent).toHaveBeenCalledTimes(1)
     expect(mockSendMessage).toHaveBeenCalledTimes(1)
+    expect(mockCloseConnection).toHaveBeenCalledTimes(1)
     expect(mockGet).toHaveBeenCalledTimes(1)
+  })
+
+  test('SIGTERM closes connection and exits', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {})
+
+    await publishClaim(request)
+    process.emit('SIGTERM')
+
+    await new Promise(process.nextTick)
+
+    expect(mockCloseConnection).toHaveBeenCalledTimes(2)
+    expect(exitSpy).toHaveBeenCalledWith(0)
+  })
+
+  test('SIGINT closes connection and exits', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {})
+
+    await publishClaim(request)
+    process.emit('SIGINT')
+
+    await new Promise(process.nextTick)
+
+    expect(mockCloseConnection).toHaveBeenCalledTimes(2)
+    expect(exitSpy).toHaveBeenCalledWith(0)
   })
 })
