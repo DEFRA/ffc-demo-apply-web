@@ -1,0 +1,34 @@
+---
+environment: production
+environmentCode: snd
+container:
+  applyQueueAddress: ffc-demo-apply
+  protectiveMonitoringUrl: https://dummy.url
+  redisHostname: SNDFFCINFRE1001.redis.cache.windows.net
+  redisPort: 6380
+  messageQueueHost: SNDFFCINFSB1001.servicebus.windows.net
+ingress:
+  server: azure.defra.cloud
+  endpoint: ffc-demo-snd1
+
+secretProviderClass:
+  azure:
+    keyvaultName: SNDFFCINFKV1001
+    objects: # reading the secret from Azure Key Vault
+      - objectName: appInsights-connectionString # secret name in Azure Key Vault
+        objectType: secret
+      - objectName: dev-paymentWebCookiePassword
+        objectType: secret
+      - objectName: dev-redisPassword
+        objectType: secret
+
+  secretObjects: # creating a kubernetes secret from the Azure Key Vault secrets
+    - secretName: ffc-demo-apply-web
+      type: Opaque
+      data:
+        - objectName: appInsights-connectionString
+          key: APPINSIGHTS_CONNECTIONSTRING # they secret key in kubernetes secret and use in the application
+        - objectName: dev-paymentWebCookiePassword
+          key: COOKIE_PASSWORD
+        - objectName: dev-redisPassword
+          key: REDIS_PASSWORD
