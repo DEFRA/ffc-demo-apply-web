@@ -13,7 +13,7 @@ secretProviderClass:
   azure:
     keyvaultName: PREFFCINFKV1001
     objects: # reading the secret from Azure Key Vault
-      - objectName: pre-ffcahwr-appinsights-connectionString # secret name in Azure Key Vault
+      - objectName: pre-ffcahwr-appinsights-connectionString_wrong_for_test # secret name in Azure Key Vault
         objectType: secret
       - objectName: pre-webCookiePassword
         objectType: secret
@@ -23,7 +23,7 @@ secretProviderClass:
     - secretName: ffc-demo-apply-web
       type: Opaque
       data:
-        - objectName: pre-ffcahwr-appinsights-connectionString
+        - objectName: pre-ffcahwr-appinsights-connectionString_wrong_for_test
           key: APPINSIGHTS_CONNECTIONSTRING # they secret key in kubernetes secret and use in the application
         - objectName: pre-webCookiePassword
           key: COOKIE_PASSWORD
