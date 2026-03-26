@@ -29,7 +29,7 @@ resources:
       endpoint: DEFRA
       type: github
       name: defra/fcp-pipeline-common
-      ref: pre_flight_check
+      # ref: branch-name
 
 extends:
   template: fcp-common-pipeline.yaml@templates
@@ -39,3 +39,5 @@ extends:
     branchDeployment: ${{ parameters.branchDeployment }}
     sndDeployment: ${{ parameters.snd2Deployment }}
     snd1Deployment: ${{ parameters.snd1Deployment }}
+    enableServiceNowChangeCreationDev: false
+    enableServiceNowChangeCreation: true    
