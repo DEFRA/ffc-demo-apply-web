@@ -1,10 +1,7 @@
 import { jest } from '@jest/globals'
 
-const ORIGINAL_ENV = { ...process.env }
-
 describe('mq config', () => {
   const DEFAULT_ENV = process.env
-  let useAzureMonitor
 
   afterAll(() => {
     process.env = DEFAULT_ENV
