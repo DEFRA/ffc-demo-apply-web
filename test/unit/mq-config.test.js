@@ -3,9 +3,11 @@ import { jest } from '@jest/globals'
 const ORIGINAL_ENV = { ...process.env }
 
 describe('mq config', () => {
-  afterEach(() => {
-    process.env = { ...ORIGINAL_ENV }
-    jest.restoreAllMocks()
+  const DEFAULT_ENV = process.env
+  let useAzureMonitor
+
+  afterAll(() => {
+    process.env = DEFAULT_ENV
   })
 
   test('builds apply queue config for production', async () => {
@@ -16,11 +18,7 @@ describe('mq config', () => {
     process.env.AZURE_CLIENT_ID = 'client-id'
     process.env.APPLY_QUEUE_ADDRESS = 'apply-queue'
 
-    const appInsightsMock = { name: 'app-insights' }
     jest.resetModules()
-    jest.unstable_mockModule('applicationinsights', () => ({
-      default: appInsightsMock
-    }))
 
     const { default: applyQueueConfig } = await import('../../app/config/mq-config.js')
 
@@ -28,7 +26,6 @@ describe('mq config', () => {
       host: 'host',
       useCredentialChain: true,
       type: 'queue',
-      appInsights: appInsightsMock,
       username: 'user',
       password: 'pass',
       managedIdentityClientId: 'client-id',
@@ -43,9 +40,6 @@ describe('mq config', () => {
     process.env.APPLY_QUEUE_ADDRESS = 'apply-queue'
 
     jest.resetModules()
-    jest.unstable_mockModule('applicationinsights', () => ({
-      default: { name: 'app-insights' }
-    }))
 
     const { default: applyQueueConfig } = await import('../../app/config/mq-config.js')
 
@@ -53,7 +47,6 @@ describe('mq config', () => {
       host: 'host',
       useCredentialChain: false,
       type: 'queue',
-      appInsights: undefined,
       useEmulator: true,
       address: 'apply-queue'
     })
