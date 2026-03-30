@@ -1,77 +1,60 @@
 import { jest } from '@jest/globals'
 
-const ORIGINAL_ENV = { ...process.env }
+describe('Application Insights', () => {
+  const DEFAULT_ENV = process.env
+  let useAzureMonitor
 
-const buildSetup = async () => {
-  jest.resetModules()
-  const startMock = jest.fn()
-  const setupMock = jest.fn(() => ({ start: startMock }))
-  const addTelemetryProcessorMock = jest.fn()
-  const defaultClient = {
-    context: {
-      keys: { cloudRole: 'cloudRoleKey' },
-      tags: {}
-    },
-    addTelemetryProcessor: addTelemetryProcessorMock
-  }
-  const appInsightsMock = { setup: setupMock, defaultClient }
+  beforeEach(async () => {
+    jest.resetModules()
 
-  jest.unstable_mockModule('applicationinsights', () => ({
-    default: appInsightsMock
-  }))
+    // Mock the module before importing
+    await jest.unstable_mockModule('@azure/monitor-opentelemetry', () => ({
+      useAzureMonitor: jest.fn()
+    }))
 
-  const { setup } = await import('../../app/insights.js')
-  return {
-    setup,
-    setupMock,
-    startMock,
-    addTelemetryProcessorMock,
-    defaultClient
-  }
-}
+    const azureMonitor = await import('@azure/monitor-opentelemetry')
+    useAzureMonitor = azureMonitor.useAzureMonitor
 
-describe('app insights setup', () => {
-  afterEach(() => {
-    process.env = { ...ORIGINAL_ENV }
-    jest.restoreAllMocks()
+    process.env = { ...DEFAULT_ENV }
   })
 
-  test('starts app insights and configures cloud role + telemetry processor', async () => {
-    process.env.APPINSIGHTS_CONNECTIONSTRING = 'test-conn'
-    process.env.APPINSIGHTS_CLOUDROLE = 'demo-web'
-    const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
-
-    const {
-      setup,
-      setupMock,
-      startMock,
-      addTelemetryProcessorMock,
-      defaultClient
-    } = await buildSetup()
-
-    setup()
-
-    expect(setupMock).toHaveBeenCalledWith('test-conn')
-    expect(startMock).toHaveBeenCalled()
-    expect(defaultClient.context.tags.cloudRoleKey).toEqual('demo-web')
-    expect(addTelemetryProcessorMock).toHaveBeenCalledTimes(1)
-    expect(logSpy).toHaveBeenCalledWith('App Insights running')
-
-    const processor = addTelemetryProcessorMock.mock.calls[0][0]
-    expect(processor({ data: { baseData: { url: 'http://test/healthz' } } })).toBe(false)
-    expect(processor({ data: { baseData: { url: 'http://test/claim' } } })).toBe(true)
-    expect(processor({ data: { baseData: {} } })).toBe(true)
+  afterAll(() => {
+    process.env = DEFAULT_ENV
   })
 
-  test('logs when app insights is disabled', async () => {
-    delete process.env.APPINSIGHTS_CONNECTIONSTRING
-    const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
+  test('does not setup application insights if no connection string', async () => {
+    process.env.APPLICATIONINSIGHTS_CONNECTION_STRING = undefined
 
-    const { setup, setupMock } = await buildSetup()
+    const appInsights = await import('../../app/insights.js')
 
-    setup()
+    appInsights.setup()
 
-    expect(setupMock).not.toHaveBeenCalled()
-    expect(logSpy).toHaveBeenCalledWith('App Insights not running')
+    expect(useAzureMonitor).not.toHaveBeenCalled()
+  })
+
+  test('does setup application insights if connection string present', async () => {
+    process.env.APPLICATIONINSIGHTS_CONNECTION_STRING = 'test-connection-string'
+
+    const appInsights = await import('../../app/insights.js')
+
+    appInsights.setup()
+
+    expect(useAzureMonitor).toHaveBeenCalledTimes(1)
+    expect(useAzureMonitor).toHaveBeenCalledWith({
+      azureMonitorExporterOptions: {
+        connectionString: 'test-connection-string'
+      },
+      instrumentationOptions: {
+        http: {
+          enabled: true,
+          ignoreIncomingRequestHook: expect.any(Function)
+        }
+      }
+    })
+
+    const options = useAzureMonitor.mock.calls[0][0]
+    expect(options.instrumentationOptions.http.ignoreIncomingRequestHook({ url: '/healthz' })).toBe(true)
+    expect(options.instrumentationOptions.http.ignoreIncomingRequestHook({ url: '/healthy' })).toBe(true)
+    expect(options.instrumentationOptions.http.ignoreIncomingRequestHook({ url: '/foo' })).toBe(false)
   })
 })
