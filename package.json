@@ -31,6 +31,7 @@
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
+    "@hapi/wreck": "18.1.0",
     "@azure/service-bus": "^7.9.5",
     "@hapi/catbox-memory": "6.0.2",
     "@hapi/catbox-redis": "7.0.2",
@@ -38,7 +39,6 @@
     "@hapi/hoek": "^11.0.7",
     "@hapi/inert": "^7.1.0",
     "@hapi/vision": "7.0.3",
-    "@hapi/wreck": "18.1.0",
     "@hapi/yar": "11.0.3",
     "@azure/monitor-opentelemetry": "1.16.0",
     "ffc-messaging": "^2.10.3",
@@ -57,7 +57,6 @@
     "@babel/preset-env": "^7.28.3",
     "@hapi/code": "^9.0.3",
     "@hapi/lab": "^26.0.0",
-    "@pact-foundation/pact": "^16.3.0",
     "blipp": "4.0.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "7.1.2",
