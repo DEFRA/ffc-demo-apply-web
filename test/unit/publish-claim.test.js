@@ -1,15 +1,8 @@
-import { PublishEvent } from 'ffc-protective-monitoring'
 import SessionHandler from '../../app/services/session-handler'
 import { MessageSender } from 'ffc-messaging'
 import publishClaim from '../../app/messaging/publish-claim'
 
 import { jest } from '@jest/globals'
-
-const mockSendEvent = jest
-  .spyOn(PublishEvent.prototype, 'sendEvent')
-  .mockImplementation(() => {
-    console.log('mocked function sendEvent')
-  })
 
 const mockSendMessage = jest
   .spyOn(MessageSender.prototype, 'sendMessage')
@@ -50,7 +43,6 @@ describe('publish claim', () => {
 
   test('should publish claim', async () => {
     await publishClaim(request)
-    expect(mockSendEvent).toHaveBeenCalledTimes(1)
     expect(mockSendMessage).toHaveBeenCalledTimes(1)
     expect(mockCloseConnection).toHaveBeenCalledTimes(1)
     expect(mockGet).toHaveBeenCalledTimes(1)
