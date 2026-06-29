@@ -24,8 +24,7 @@ const schema = Joi.object({
     isHttpOnly: Joi.bool().default(true),
     clearInvalid: Joi.bool().default(false),
     strictHeader: Joi.bool().default(true)
-  }),
-  protectiveMonitoringUrl: Joi.string().allow('')
+  })
 })
 
 // Build config
@@ -50,8 +49,7 @@ const config = {
     isHttpOnly: true,
     clearInvalid: false,
     strictHeader: true
-  },
-  protectiveMonitoringUrl: process.env.PROTECTIVE_MONITORING_URL
+  }
 }
 
 // Validate config

@@ -3,9 +3,6 @@
 data:
   NODE_ENV: {{ quote .Values.environment }}
   PORT: {{ quote .Values.container.port }}
-{{- if .Values.container.protectiveMonitoringUrl }}
-  PROTECTIVE_MONITORING_URL: {{ quote .Values.container.protectiveMonitoringUrl }}
-{{- end }}
 {{- if .Values.container.redisHostname }}
   REDIS_HOSTNAME: {{ quote .Values.container.redisHostname }}
 {{- end }}

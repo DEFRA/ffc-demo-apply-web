@@ -46,7 +46,6 @@ container:
   messageQueueHost: amq
   applyQueueAddress: ffc-demo-apply
   googleTagManagerKey: GTM-N5QK7RL
-  protectiveMonitoringUrl:
 
 ingress:
   class: nginx

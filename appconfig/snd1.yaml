@@ -3,7 +3,6 @@ environment: production
 environmentCode: snd
 container:
   applyQueueAddress: ffc-demo-apply
-  protectiveMonitoringUrl: https://dummy.url
   redisHostname: SNDFFCINFRE1001.redis.cache.windows.net
   redisPort: 6380
   messageQueueHost: SNDFFCINFSB1001.servicebus.windows.net
