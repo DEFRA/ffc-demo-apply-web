@@ -27,7 +27,8 @@
   "author": "Defra FCP Platform",
   "contributors": [
     "Farshid Mirza farsid.mirza@defra.gov.uk",
-    "John Watson john.watson2@rpa.gov.uk"
+    "John Watson john.watson2@rpa.gov.uk",
+    "Martin Mitchell martin.mitchell@defra.gov.uk"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
@@ -44,9 +45,9 @@
     "ffc-messaging": "^2.10.3",
     "govuk-frontend": "5.12.0",
     "hapi-pino": "13.0.0",
-    "joi": "^18.2.3",
+    "joi": "^18.3.1",
     "log-timestamp": "0.3.0",
-    "moment": "2.30.1",
+    "moment": "2.31.0",
     "nunjucks": "3.2.4"
   },
   "devDependencies": {
@@ -76,8 +77,19 @@
     "webpack-cli": "6.0.1"
   },
   "overrides": {
-    "@opentelemetry/core": "2.8.0",
-    "js-yaml": "4.3.1"
+    "js-yaml": "4.3.1",
+    "@hapi/content": "6.0.3",
+    "@grpc/grpc-js": "1.14.5",
+    "fast-xml-parser": "5.12.0",
+    "ffc-messaging": {
+      "joi": "18.3.1"
+    },
+    "@hapi/catbox-redis": {
+      "joi": "17.13.9"
+    },  
+    "blipp": {
+      "joi": "17.13.9"
+    }
   },
   "nodemonConfig": {
     "ignore": [
