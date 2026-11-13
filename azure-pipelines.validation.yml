@@ -1,0 +1,29 @@
+trigger: none
+pr: none
+
+pool:
+  name: DEFRA-FFC-SND2-ubuntu2204
+
+steps:
+  - checkout: self
+    persistCredentials: false
+
+  - task: NodeTool@0
+    displayName: Use Node 24.22.3
+    inputs:
+      versionSpec: '24.22.3'
+
+  - bash: |
+      set -euo pipefail
+
+      git rev-parse HEAD
+      node --version
+      npm --version
+
+      npm ci --no-audit --no-fund
+      npm exec --no -- standard
+      npm run build
+      npm run test:unit -- --runInBand
+      npm audit --audit-level=moderate
+    displayName: Validate application
+    
