@@ -78,6 +78,7 @@ if (!value.useRedis) {
 }
 
 const catboxOptions = {
+  protocol: 2,
   host: value.redisHost,
   port: value.redisPort,
   password: value.redisPassword,
