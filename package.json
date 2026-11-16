@@ -104,6 +104,9 @@
     "test-exclude": {
       "glob": "14.0.2",
       "minimatch": "11.0.8"
+    },
+    "@azure/monitor-opentelemetry": {
+      "@opentelemetry/instrumentation-http": "0.222.0"
     }
   },
   "nodemonConfig": {
