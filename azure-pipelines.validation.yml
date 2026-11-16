@@ -26,4 +26,3 @@ steps:
       npm run test:unit -- --runInBand
       npm audit --audit-level=moderate
     displayName: Validate application
-    
