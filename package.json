@@ -108,6 +108,9 @@
     },
     "@azure/monitor-opentelemetry": {
       "@opentelemetry/instrumentation-http": "0.222.0"
+    },
+    "nunjucks": {
+      "chokidar": "4.0.3"
     }
   },
   "nodemonConfig": {
