@@ -1,4 +1,4 @@
-ARG PARENT_VERSION=2.3.0-node20.15.0
+ARG PARENT_VERSION=3.2.8-node24.22.3
 ARG PORT=3000
 ARG PORT_DEBUG=9229
 
@@ -28,5 +28,11 @@ EXPOSE ${PORT}
 
 COPY --from=development /home/node/app/ ./app/
 COPY --from=development /home/node/package*.json ./
-RUN npm ci 
+RUN npm ci --omit=dev
+
+USER root
+RUN rm -rf /usr/local/lib/node_modules/npm /home/node/.npm \
+    && rm -f /usr/local/bin/npm /usr/local/bin/npx
+
+USER node
 CMD [ "node", "app" ]

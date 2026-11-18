@@ -1,4 +1,7 @@
-name: '$(Build.SourceBranchName)$(System.PullRequest.SourceBranch)$(Rev:.r)'
+name: '$(Date:yyyyMMdd).$(Rev:r)'
+
+pool:
+  vmImage: ubuntu-24.04
 
 trigger:
   - main
@@ -29,7 +32,7 @@ resources:
       endpoint: DEFRA
       type: github
       name: defra/fcp-pipeline-common
-      # ref: branch-name
+      ref: 1f2e89efb445f50feb023e743f24602f577798fd
 
 extends:
   template: fcp-common-pipeline.yaml@templates
